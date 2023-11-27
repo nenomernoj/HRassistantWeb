@@ -1,0 +1,139 @@
+/* You can add global styles to this file, and also import other style files */
+$grey1: #676971;
+$brand: #13A7DA;
+$dark: #1C1C1E;
+$bgGrey: #F3F3F7;
+@font-face {
+  font-family: 'Inter-Regular';
+  src: url('assets/fonts/Inter-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Inter-Bold';
+  src: url('assets/fonts/Inter-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Inter-SemiBold';
+  src: url('assets/fonts/Inter-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Medium';
+  src: url('assets/fonts/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('assets/fonts/Roboto-Regular.ttf');
+}
+
+p {
+  font-family: Inter-Regular, sans-serif;
+}
+
+.pagePadding {
+  padding: 0 15%;
+}
+
+h1, h2, h3, b {
+  font-family: Inter-Bold, sans-serif;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 48px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+.topPanel {
+  padding: 32px 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  h2 {
+    padding: 0;
+    margin: 0 0 0 12px;
+  }
+}
+
+.logoText {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+p {
+  font-family: Inter-Regular, sans-serif;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.menuItem {
+  font-family: Inter-SemiBold, sans-serif;
+  font-size: 16px;
+  color: $grey1;
+  margin-right: 32px;
+  cursor: pointer;
+  transition: .3s;
+
+  &:hover {
+    color: $brand;
+  }
+}
+
+.activeMenu {
+  color: $dark;
+}
+
+.loginBtn {
+  img {
+    margin-right: 15px;
+  }
+}
+
+button span {
+  font-family: Inter-SemiBold, sans-serif;
+}
+
+.footer {
+  background-color: $bgGrey;
+  padding: 32px 15%;
+  margin-top: 60px;
+}
+
+.socIcons a {
+  margin-right: 8px;
+}
+
+.greyBg {
+  background-color: $bgGrey;
+}
+
+.darkColor {
+  color: $dark;
+}
+
+.br20px {
+  border-radius: 20px;
+}
+
+nz-select {
+  width: 100%;
+}
