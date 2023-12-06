@@ -79,7 +79,7 @@ h2 {
 }
 
 .totalInfo {
-  margin-top: 120px;
+  margin-top: 120px !important;
 
   .greyBg {
     display: flex;
@@ -111,4 +111,53 @@ h2 {
   font-family: Inter-Bold, sans-serif;
   font-size: 44px;
   margin-bottom: 38px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.priceOptions {
+  margin-top: 18px;
+}
+
+.whyHr .greyBg {
+  padding: 30px 20px;
+  height: 200px;
+
+  p {
+    font-family: Inter-SemiBold, sans-serif;
+    font-size: 16px;
+  }
+
+  img {
+    margin-bottom: 15px;
+  }
+}
+
+.banner {
+  background-image: url("/assets/images/banner.png");
+  background-size: cover;
+  border-radius: 24px;
+
+  button {
+    width: 80%;
+  }
+
+  b {
+    font-size: 52px;
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 24px;
+  }
+
+  & > div {
+
+    color: #fff;
+    display: flex;
+    align-items: center;
+    height: 214px;
+  }
 }

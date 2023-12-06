@@ -1,20 +1,27 @@
 <div nz-row class="topPanel">
-  <div nz-col nzSpan="8">
+  <div nz-col nzLg="8" nzXs="20">
     <div class="logo">
       <img src="assets/outline/logo.svg" alt="logo"/>
       <h2>HR assistant
         <p class="logoText">База актуальных профилей</p></h2>
     </div>
   </div>
-  <div nz-col nzSpan="12" nzOffset="4">
+  <div nz-col [nzLg]="{ span: 12, offset: 4 }" [nzXs]="{ span: 4, offset: 0 }">
     <div class="menu">
       <div class="menuItem" routerLink="" routerLinkActive="activeMenu">Работодателям</div>
       <div class="menuItem" routerLink="search" routerLinkActive="activeMenu">Поиск сотрудника</div>
       <div class="menuItem" routerLink="app" routerLinkActive="activeMenu">Соискателям</div>
-      <button nz-button nzType="default" class="loginBtn">
+      <button (click)="checkAuth()" nz-button nzType="default" class="loginBtn">
         <i nz-icon nzType="login"></i> Войти
       </button>
     </div>
   </div>
 </div>
 
+<nz-modal [nzWidth]="showRegisterform ? 800 : 428" [(nzVisible)]="visibaleAuthModal" [nzTitle]="''" [nzFooter]="null"
+          (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <app-login (showRegisteration)="showRegisterform = true" *ngIf="!showRegisterform"></app-login>
+    <app-register (showLogin)="showRegisterform = false" *ngIf="showRegisterform"></app-register>
+  </ng-container>
+</nz-modal>

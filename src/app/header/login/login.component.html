@@ -1,0 +1,24 @@
+<div class="modalHeader">
+  <img src="assets/outline/logo.svg" alt="logo"/>
+  <h3>Войти</h3>
+</div>
+<div class="modalBody">
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Введите номер телефона!">
+        <nz-input-group>
+          <input type="text" prefix="+7" [mask]="'(000)-000-00-00'" nz-input formControlName="userName" placeholder="Username" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Введите пароль">
+        <nz-input-group>
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Войти</button>
+    <button nz-button class="login-form-button login-form-margin" (click)="showRegisterForm()" [nzType]="'default'">Регистрация</button>
+  </form>
+</div>

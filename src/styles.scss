@@ -3,6 +3,7 @@ $grey1: #676971;
 $brand: #13A7DA;
 $dark: #1C1C1E;
 $bgGrey: #F3F3F7;
+$blue: #086D8F;
 @font-face {
   font-family: 'Inter-Regular';
   src: url('assets/fonts/Inter-Regular.ttf');
@@ -36,7 +37,7 @@ p {
   padding: 0 15%;
 }
 
-h1, h2, h3, b {
+h1, h2, h3, h4, b {
   font-family: Inter-Bold, sans-serif;
 }
 
@@ -49,10 +50,18 @@ h3 {
   font-size: 24px;
 }
 
+h4 {
+  font-size: 20px;
+}
+
 .topPanel {
   padding: 32px 0;
   display: flex;
   align-items: center;
+}
+
+.blue {
+  color: $blue;
 }
 
 .logo {
@@ -134,6 +143,111 @@ button span {
   border-radius: 20px;
 }
 
+.p16 {
+  padding: 16px;
+}
+
 nz-select {
   width: 100%;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: 52px;
+  border-radius: 13px;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.ant-avatar-square {
+  border-radius: 20px;
+  border: 1px solid #cfcfcf;
+}
+
+.ant-modal-content {
+  border-radius: 24px;
+}
+
+.ant-input {
+  font-size: 16px;
+  border-radius: 14px !important;
+}
+
+.ant-modal-body {
+  padding: 32px;
+}
+
+.ant-input-affix-wrapper {
+  background-color: #F3F3F7;
+  border-radius: 18px;
+  padding: 14px 10px;
+}
+
+.modalHeader {
+  text-align: center;
+
+  img {
+    margin-bottom: 20px;
+  }
+}
+
+
+@media screen and (max-width: 960px) {
+  .pagePadding {
+    padding: 0 5%;
+    background-position: 50% 50%;
+  }
+  h1 {
+    font-size: 24px;
+    line-height: inherit;
+  }
+  .titleBlock {
+    height: 325px !important;
+    padding: 0px 5% !important;
+    background-position: 50% 50%;
+  }
+  .moreBtn {
+    margin-top: 18px !important;
+  }
+  h2 {
+    font-size: 30px !important;
+    line-height: normal;
+  }
+  .pointers {
+    img {
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .br20 {
+      padding: 24px 14px;
+    }
+  }
+  .ant-btn {
+    width: 100%;
+  }
+  .totalInfo {
+    margin-top: 60px !important;
+  }
+
+  .banner {
+    margin-top: 60px;
+    background-position: 50% 50%;
+    text-align: center;
+
+    b {
+      font-size: 42px !important;
+    }
+
+    h3 {
+      color: #fff;
+      font-size: 20px !important;
+    }
+  }
+  .menuItem {
+    margin-bottom: 6px;
+  }
+  .footer {
+    padding: 30px 5%;
+  }
 }

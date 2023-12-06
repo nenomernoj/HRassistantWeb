@@ -1,0 +1,23 @@
+<div class="filterBlock">
+  <h1>
+    3 976 резюме по городу Астана
+  </h1>
+  <nz-select nzPlaceHolder="Город">
+    <nz-option nzLabel="Астана" nzValue="1"></nz-option>
+  </nz-select>
+  <nz-select nzPlaceHolder="Специализация">
+    <nz-option nzLabel="Официант" nzValue="1"></nz-option>
+  </nz-select>
+</div>
+<div class="results" nz-row [nzGutter]="[24,24]">
+  <div nz-col nzLg="6" nzXs="24" *ngFor="let item of count">
+    <div class="greyBg br20px" routerLink="1">
+      <nz-avatar  [nzSize]="64" nzSrc="assets/images/woman.png"></nz-avatar>
+      <b>Алия Нурланова</b>
+      <p><img src="assets/images/location-01.svg"/> Астана</p>
+      <b class="prof">Официант</b>
+      <div class="price">от 250 000 ₸</div>
+      <p class="exp">Опыт работы 4 месяца</p>
+    </div>
+  </div>
+</div>

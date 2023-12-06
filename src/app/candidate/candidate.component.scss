@@ -1,0 +1,74 @@
+.wrapper > div {
+  width: 100%;
+  overflow: auto;
+
+}
+
+.resumeBlock > div {
+  margin-bottom: 30px;
+}
+
+.candidateHeader {
+  display: flex;
+}
+
+nz-avatar {
+  margin-right: 30px;
+}
+
+.contactItem {
+  color: #1C1C1E;
+  background-color: #F3F3F7;
+  width: auto;
+  float: left;
+  padding: 10px 14px;
+  margin: 8px 8px 10px 0;
+  border-radius: 14px;
+  font-size: 16px;
+  font-family: Inter-Bold, sans-serif;
+  display: flex;
+  align-items: center;
+
+  img {
+    margin-right: 7px;
+  }
+
+  button {
+    margin-left: 60px;
+  }
+}
+
+.greyBg {
+  margin-bottom: 12px;
+}
+
+b {
+  display: block;
+  font-size: 16px;
+}
+
+.skills {
+  overflow: auto;
+}
+
+.skill {
+  padding: 8px 12px;
+  float: left;
+  margin-right: 8px;
+}
+
+@media screen and (max-width: 960px) {
+  .resumeBlock {
+    margin-top: 60px;
+  }
+  .contactItem {
+    width: 100%;
+    justify-content: space-evenly;
+
+    button {
+      max-width: 100px;
+      margin-left: 0;
+    }
+
+  }
+}

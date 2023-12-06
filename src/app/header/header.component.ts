@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import {IconLoaderService} from "../icon-loader.service";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +6,25 @@ import {IconLoaderService} from "../icon-loader.service";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  constructor(private iconLoader: IconLoaderService) {
-    this.iconLoader.loadIcon('login', 'assets/outline/login.svg');
+
+  showRegisterform = false;
+  visibaleAuthModal = false;
+
+
+  handleCancel(): void {
+    this.visibaleAuthModal = false;
+  }
+
+  handleOk(): void {
+    this.visibaleAuthModal = false;
+  }
+
+  checkAuth(): void {
+    const auth = false;
+    if (auth) {
+
+    } else {
+      this.visibaleAuthModal = true;
+    }
   }
 }

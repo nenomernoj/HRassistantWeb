@@ -1,0 +1,121 @@
+<div class="modalHeader">
+  <img src="assets/outline/logo.svg" alt="logo"/>
+  <h3>{{renderTitle()}}</h3>
+</div>
+<div class="modalBody">
+  <ng-container *ngIf="step === 2">
+    <div nz-row nzGutter="24">
+      <div nz-col nzLg="24" nzXs="24">
+        <ngx-pass-code
+          [length]="4"
+          type="text"
+          [uppercase]="true"
+          [(ngModel)]="otp"
+        ></ngx-pass-code>
+        <button [nzLoading]="loadingSendSms" (click)="sendSMS()" nz-button nzType="link">Получить смс повторно (не чаще чем, раз в 2 минуты)</button>
+      </div>
+      <div nz-col nzLg="12" nzXs="24">
+        <button  nz-button class="login-form-button login-form-margin" (click)="showLog()" [nzType]="'default'">Отмена
+        </button>
+      </div>
+      <div nz-col nzLg="12" nzXs="24">
+        <button nz-button [nzLoading]="loadingSendSms" (click)="smsConfirm()" [disabled]="otp?.length < 4"
+                class="login-form-button login-form-margin"
+                [nzType]="'primary'">Далее
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+
+  <form *ngIf="step === 1" nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()" nz-row
+        nzGutter="24">
+    <div nz-col nzLg="12" nzXs="24">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите номер телефона!">
+          <nz-input-group>
+            <input type="text" prefix="+7" [mask]="'(000)-000-00-00'" nz-input formControlName="phoneNumber"
+                   placeholder="Номер телефона"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введите пароль!">
+          <nz-input-group>
+            <input
+              nz-input
+              placeholder="Введите пароль"
+              type="password"
+              id="password"
+              formControlName="password"
+              (ngModelChange)="updateConfirmValidator()"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введите пароль" [nzErrorTip]="errorTpl">
+          <nz-input-group>
+            <input
+              placeholder="Повторите пароль"
+              nz-input
+              type="password"
+              id="checkPassword"
+              formControlName="checkPassword"
+            />
+            <ng-template #errorTpl let-control>
+              <ng-container *ngIf="control.hasError('required')">Подтвердите пароль!</ng-container>
+              <ng-container *ngIf="control.hasError('confirm')">
+                Пароль не совпадает
+              </ng-container>
+            </ng-template>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col nzLg="12" nzXs="24">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Введите наименование компании">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="companyName"
+                   placeholder="Наименование компании"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите контактное лицо">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="fullName"
+                   placeholder="Контактное лицо (ФИО) "/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите номер whatsapp">
+          <nz-input-group>
+            <input type="text" prefix="+7" [mask]="'(000)-000-00-00'" nz-input formControlName="whatsAppNumber"
+                   placeholder="Номер whatsapp"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите Email">
+          <nz-input-group>
+            <input nz-input formControlName="email" id="email" placeholder="Email"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <nz-divider style="    margin: 3px 0 24px 0;"></nz-divider>
+    <div nz-col nzLg="12" nzXs="24">
+      <button nz-button class="login-form-button login-form-margin" (click)="showLog()" [nzType]="'default'">Уже есть
+        акканут, Войти
+      </button>
+    </div>
+    <div nz-col nzLg="12" nzXs="24">
+      <button [nzLoading]="loadingSendSms" nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Далее</button>
+    </div>
+
+  </form>
+</div>
