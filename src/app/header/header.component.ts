@@ -1,11 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NzNotificationService} from "ng-zorro-antd/notification";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  constructor(private notification: NzNotificationService) {
+  }
+
+  ngOnInit() {
+    this.notification.warning('Сайт в разработке', 'Данный портал находится в процессе разработки, мы скоро закончим все работы, спасибо за ожидание', {nzDuration: 0})
+  }
 
   showRegisterform = false;
   visibaleAuthModal = false;

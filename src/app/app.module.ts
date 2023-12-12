@@ -31,6 +31,7 @@ import { RegisterComponent } from './header/register/register.component';
 import { LoginComponent } from './header/login/login.component';
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NgxPassCodeModule} from "ngx-pass-code";
+import {NzNotificationServiceModule} from "ng-zorro-antd/notification";
 
 registerLocaleData(ru);
 const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
@@ -66,7 +67,8 @@ const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
     NgxMaskDirective,
     NgxMaskPipe,
     NzDividerModule,
-    NgxPassCodeModule
+    NgxPassCodeModule,
+    NzNotificationServiceModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: ru_RU},
