@@ -100,7 +100,7 @@ export class RegisterComponent {
 
   smsConfirm(): void {
     console.log(this.otp);
-    const data: any = this.validateForm.value;
+    const data: any = {...this.validateForm.value};
     data.phoneNumber = '7' + data.phoneNumber;
     data.smsCode = this.otp;
     this.loadingSendSms = true;

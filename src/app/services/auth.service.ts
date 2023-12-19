@@ -60,13 +60,9 @@ export class AuthService {
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(`/api/Account/Login`, data).pipe(
-      tap((response: any) => {
-        this.setAccessToken(response.accessToken);
-        this.setRefreshToken(response.refreshToken);
-      })
-    );
+    return this.http.post(`/org/login`, data);
   }
+
 
   resetPassword(data: any): Observable<any> {
     return this.http.post(`/api/Account/ResetPassword`, data);

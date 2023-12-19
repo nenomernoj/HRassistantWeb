@@ -7,11 +7,10 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  constructor(private notification: NzNotificationService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.notification.warning('Сайт в разработке', 'Данный портал находится в процессе разработки, мы скоро закончим все работы, спасибо за ожидание', {nzDuration: 0})
   }
 
   showRegisterform = false;
