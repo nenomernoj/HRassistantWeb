@@ -14,7 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {StepBackwardOutline, AlertFill, AlertOutline} from '@ant-design/icons-angular/icons';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
 import {ru_RU} from 'ng-zorro-antd/i18n';
-import {registerLocaleData} from '@angular/common';
+import {NgOptimizedImage, registerLocaleData} from '@angular/common';
 import ru from '@angular/common/locales/ru';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -32,6 +32,7 @@ import { LoginComponent } from './header/login/login.component';
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NgxPassCodeModule} from "ngx-pass-code";
 import {NzNotificationServiceModule} from "ng-zorro-antd/notification";
+import {NzSpinModule} from "ng-zorro-antd/spin";
 
 registerLocaleData(ru);
 const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
@@ -68,7 +69,9 @@ const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
     NgxMaskPipe,
     NzDividerModule,
     NgxPassCodeModule,
-    NzNotificationServiceModule
+    NzNotificationServiceModule,
+    NgOptimizedImage,
+    NzSpinModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: ru_RU},
