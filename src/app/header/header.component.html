@@ -21,7 +21,7 @@
 <nz-modal [nzWidth]="showRegisterform ? 800 : 428" [(nzVisible)]="visibaleAuthModal" [nzTitle]="''" [nzFooter]="null"
           (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <app-login (showRegisteration)="showRegisterform = true" *ngIf="!showRegisterform"></app-login>
+    <app-login (closeModal)="handleOk()" (showRegisteration)="showRegisterform = true" *ngIf="!showRegisterform"></app-login>
     <app-register (showLogin)="showRegisterform = false" *ngIf="showRegisterform"></app-register>
   </ng-container>
 </nz-modal>

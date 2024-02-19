@@ -33,4 +33,6 @@ export class HeaderComponent implements OnInit {
       this.visibaleAuthModal = true;
     }
   }
+
+    protected readonly close = close;
 }

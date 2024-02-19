@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, NonNullableFormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,12 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginComponent {
   constructor(private fb: NonNullableFormBuilder,
+              private message: NzMessageService,
               private authService: AuthService) {
   }
 
   @Output() showRegisteration = new EventEmitter<string>();
+  @Output() closeModal = new EventEmitter<string>();
   loading = false;
   validateForm: FormGroup<{
     phone_number: FormControl<string>;
@@ -28,14 +31,20 @@ export class LoginComponent {
       data.phone_number = '7' + data.phone_number;
       this.loading = true;
       this.authService.login(data).subscribe(res => {
+
         console.log(res);
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
+        this.message.success('Вы вошли в систему');
         this.loading = false;
+        this.closeModal.emit();
+      }, err => {
+        this.loading = false;
+        console.log(err);
+        this.message.error(err.error.message);
       });
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
-        this.loading = false;
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({onlySelf: true});
