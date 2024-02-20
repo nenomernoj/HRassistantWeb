@@ -3,7 +3,7 @@
     <div class="titleBlock">
       <h1>Актуальная база кандидатов отобранные профессиональными
         HR ассистентами</h1>
-      <button class="moreBtn" nz-button nzType="default">Получить доступ</button>
+      <button class="moreBtn" nz-button nzType="default" (click)="isVisibleTarif = true">Получить доступ</button>
     </div>
   </div>
 </div>
@@ -31,7 +31,7 @@
     </div>
   </div>
   <div nz-col nzSpan="24" style="text-align: center;">
-    <button nz-button nzType="primary">Перейти к базе</button>
+    <button nz-button nzType="primary" routerLink="search">Перейти к базе</button>
   </div>
 </div>
 <div nz-row [nzGutter]="[24,24]" class="totalInfo">
@@ -63,18 +63,9 @@
   <div nz-col [nzLg]="{ span: 12, offset: 0 }" [nzXs]="{ span: 24, offset: 0 }">
     <div class="br20px greyBg">
       <h3>Доступ к базе профилей кандидатов</h3>
-      <div nz-row nzGutter="24" class="priceOptions">
-        <div nz-col nzSpan="10">
-          <nz-select>
-            <nz-option nzLabel="1" nzValue="1">1</nz-option>
-          </nz-select>
-        </div>
-        <div nz-col nzSpan="6">
-          <nz-select nzPlacement="bottomRight"></nz-select>
-        </div>
-      </div>
-      <span class="price">4 990 ₸</span>
-      <button class="w100" nz-button nzType="primary">Получить доступ</button>
+        <p>Получите доступ на <b>7 дней</b> <br/>для выбранных категорий</p>
+      <span class="price">14 990 ₸ <b class="perCat">за категорию</b></span>
+      <button class="w100" nz-button nzType="primary" (click)="isVisibleTarif = true">Получить доступ</button>
     </div>
   </div>
 </div>
@@ -88,7 +79,7 @@
       <b>от 190 990 ₸</b>
     </div>
     <div nz-col [nzLg]="{ span: 8, offset: 2 }" [nzXs]="{ span: 24, offset: 0 }">
-      <button nz-button nzType="default">Оставить заявку</button>
+      <button nz-button nzType="default" (click)="isVisibleTarif = true">Оставить заявку</button>
     </div>
   </div>
 </div>
@@ -124,5 +115,6 @@
       <p>Бонусные тесты и анкеты для работодателей при первичном собеседовании</p>
     </div>
   </div>
-  <button style="width: 262px; margin: 48px auto" nz-button nzType="primary">Получить доступ</button>
+  <button style="width: 262px; margin: 48px auto" nz-button nzType="primary" (click)="isVisibleTarif = true">Получить доступ</button>
 </div>
+<app-modal-tarif [isVisible]="isVisibleTarif" (closeModal)="isVisibleTarif = false"></app-modal-tarif>

@@ -1,0 +1,19 @@
+<nz-modal [nzFooter]="null" [(nzVisible)]="isVisible" nzTitle="Доступ к базе кандидатов" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-container *nzModalContent>
+    <div nz-row nzGutter="24" class="priceOptions">
+      <div nz-col nzSpan="24">
+        <p>Выберите категории</p>
+        <nz-select nzMode="multiple" [(ngModel)]="selectedCats" (ngModelChange)="showLog($event)">
+          <nz-option *ngFor="let cat of categories" [nzLabel]="cat.Name" [nzValue]="cat.Name"></nz-option>
+        </nz-select>
+      </div>
+      <div nz-col nzSpan="24">
+      <h1 style="margin-top: 24px">{{price * selectedCats.length}} ₸ <small>Доступ на 7 дней</small></h1>
+      </div>
+      <div nz-col nzSpan="24">
+        <button nzSpaceItem nz-button nzType="primary" [disabled]="selectedCats?.length < 1" (click)="getAccess()" style="margin-right: 10px;">Запросить доступ</button>
+        <button nzSpaceItem nz-button nzType="default" (click)="handleCancel()">Отмена</button>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

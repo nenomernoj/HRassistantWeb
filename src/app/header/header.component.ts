@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {NzNotificationService} from "ng-zorro-antd/notification";
+import {jwtDecode} from "jwt-decode";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-header',
@@ -7,15 +8,29 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
+  company: any = null;
+  isVisibleTarif = false;
+
   ngOnInit() {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      this.authService.setAccessToken(accessToken);
+    }
+    this.authService.accessTokenSubject.subscribe(value => {
+      if (value) {
+        const company: any = jwtDecode(value);
+        this.company = company.org;
+        console.log(this.company);
+        localStorage.setItem('company', JSON.stringify(this.company));
+      }
+    });
   }
 
   showRegisterform = false;
   visibaleAuthModal = false;
-
 
   handleCancel(): void {
     this.visibaleAuthModal = false;
@@ -34,5 +49,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-    protected readonly close = close;
+  logout(): void {
+    localStorage.clear();
+    window.location.href = '/';
+  }
+
+  openTarifModal(): void {
+
+  }
 }

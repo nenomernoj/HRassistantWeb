@@ -1,18 +1,27 @@
 <div nz-row class="topPanel">
   <div nz-col nzLg="8" nzXs="20">
-    <div class="logo">
+    <div class="logo" routerLink="/" style="cursor: pointer">
       <img src="assets/outline/logo.svg" alt="logo"/>
       <h2>HR assistant
         <p class="logoText">База актуальных профилей</p></h2>
     </div>
   </div>
-  <div nz-col [nzLg]="{ span: 12, offset: 4 }" [nzXs]="{ span: 4, offset: 0 }">
+  <div nz-col [nzLg]="{ span: 12, offset: 2 }" [nzXs]="{ span: 4, offset: 0 }">
     <div class="menu">
       <div class="menuItem" routerLink="" routerLinkActive="activeMenu">Работодателям</div>
       <div class="menuItem" routerLink="search" routerLinkActive="activeMenu">Поиск сотрудника</div>
-      <div class="menuItem" routerLink="app" routerLinkActive="activeMenu">Соискателям</div>
-      <button (click)="checkAuth()" nz-button nzType="default" class="loginBtn">
+      <div class="menuItem" *ngIf="!company" routerLink="app" routerLinkActive="activeMenu">Соискателям</div>
+      <button *ngIf="!company" (click)="checkAuth()" nz-button nzType="default" class="loginBtn">
         <i nz-icon nzType="login"></i> Войти
+      </button>
+      <button *ngIf="company" (click)="isVisibleTarif = true" nz-button nzType="link" class="loginBtn">
+        Подключить тариф
+      </button>
+      <button *ngIf="company" routerLink="profile" nz-button nzType="primary" class="loginBtn profileBtn">
+        Вошли как: {{ company?.FullName }}
+      </button>
+      <button (click)="logout()" *ngIf="company" nz-button nzType="text" class="loginBtn" style="margin-left: 20px">
+        <span nz-icon nzType="logout" nzTheme="outline"></span>
       </button>
     </div>
   </div>
@@ -21,7 +30,10 @@
 <nz-modal [nzWidth]="showRegisterform ? 800 : 428" [(nzVisible)]="visibaleAuthModal" [nzTitle]="''" [nzFooter]="null"
           (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <app-login (closeModal)="handleOk()" (showRegisteration)="showRegisterform = true" *ngIf="!showRegisterform"></app-login>
+    <app-login (closeModal)="handleOk()" (showRegisteration)="showRegisterform = true"
+               *ngIf="!showRegisterform"></app-login>
     <app-register (showLogin)="showRegisterform = false" *ngIf="showRegisterform"></app-register>
   </ng-container>
 </nz-modal>
+
+<app-modal-tarif [isVisible]="isVisibleTarif" (closeModal)="isVisibleTarif = false"></app-modal-tarif>

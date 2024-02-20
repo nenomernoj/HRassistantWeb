@@ -7,8 +7,8 @@ import {tap} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private accessTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  private refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  accessTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {
   }
@@ -21,12 +21,11 @@ export class AuthService {
     return this.http.post(`/org/registerOrganization`, data);
   }
 
-  getAccessToken(): string {
+  getAccessToken():BehaviorSubject<string> {
     return this.accessTokenSubject.value;
   }
 
   setAccessToken(token: string): void {
-    localStorage.setItem('accessToken', token);
     this.accessTokenSubject.next(token);
   }
 

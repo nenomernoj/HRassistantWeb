@@ -33,6 +33,7 @@ export class LoginComponent {
       this.authService.login(data).subscribe(res => {
 
         console.log(res);
+        this.authService.setAccessToken(res.accessToken);
         localStorage.setItem('accessToken', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
         this.message.success('Вы вошли в систему');

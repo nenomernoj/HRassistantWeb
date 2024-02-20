@@ -11,7 +11,7 @@ import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {HttpClientModule} from "@angular/common/http";
-import {StepBackwardOutline, AlertFill, AlertOutline} from '@ant-design/icons-angular/icons';
+import {StepBackwardOutline, AlertFill, AlertOutline, LogoutOutline} from '@ant-design/icons-angular/icons';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
 import {ru_RU} from 'ng-zorro-antd/i18n';
 import {NgOptimizedImage, registerLocaleData} from '@angular/common';
@@ -33,9 +33,11 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NgxPassCodeModule} from "ngx-pass-code";
 import {NzNotificationServiceModule} from "ng-zorro-antd/notification";
 import {NzSpinModule} from "ng-zorro-antd/spin";
+import { ModalTarifComponent } from './modal-tarif/modal-tarif.component';
+import {NzSpaceModule} from "ng-zorro-antd/space";
 
 registerLocaleData(ru);
-const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
+const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill, LogoutOutline];
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
     ProfileComponent,
     CandidateComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ModalTarifComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill];
     NgxPassCodeModule,
     NzNotificationServiceModule,
     NgOptimizedImage,
-    NzSpinModule
+    NzSpinModule,
+    NzSpaceModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: ru_RU},
