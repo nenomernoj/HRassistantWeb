@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
       this.authService.setAccessToken(accessToken);
     }
     this.authService.accessTokenSubject.subscribe(value => {
+      console.log(value);
       if (value) {
         const company: any = jwtDecode(value);
         this.company = company.org;
@@ -27,6 +28,13 @@ export class HeaderComponent implements OnInit {
         localStorage.setItem('company', JSON.stringify(this.company));
       }
     });
+    this.authService.openAuthModalSubject.subscribe(res => {
+      console.log(res);
+      if(res){
+        this.visibaleAuthModal = true;
+      }
+
+    })
   }
 
   showRegisterform = false;

@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     component: CandidateComponent,
-    path: 'search/:id'
+    path: 'search/detail'
   },
   {
     component: ProfileComponent,

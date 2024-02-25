@@ -1,1 +1,36 @@
-<p>profile works!</p>
+<h1>Профиль</h1>
+<form nz-form nzLayout="vertical" [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label>Наименование компании</nz-form-label>
+    <nz-form-control>
+      <nz-input-group>
+        <input type="text" nz-input formControlName="companyName" placeholder="Наименование компании"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-form-label>Контактное лицо</nz-form-label>
+      <nz-input-group>
+        <input type="text" nz-input formControlName="fullName" placeholder="Контактное лицо"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-form-label>Номер WhatsApp</nz-form-label>
+      <nz-input-group>
+        <input type="text" prefix="+7" [mask]="'(000)-000-00-00'" nz-input formControlName="whatsAppNumber"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <nz-form-label>Почта</nz-form-label>
+      <nz-input-group>
+        <input type="email" nz-input formControlName="email"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Сохранить</button>
+</form>

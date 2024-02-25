@@ -10,7 +10,7 @@ import {AppComponent} from './app.component';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {MainPageComponent} from "./main-page/main-page.component";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {StepBackwardOutline, AlertFill, AlertOutline, LogoutOutline} from '@ant-design/icons-angular/icons';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
 import {ru_RU} from 'ng-zorro-antd/i18n';
@@ -35,6 +35,8 @@ import {NzNotificationServiceModule} from "ng-zorro-antd/notification";
 import {NzSpinModule} from "ng-zorro-antd/spin";
 import { ModalTarifComponent } from './modal-tarif/modal-tarif.component';
 import {NzSpaceModule} from "ng-zorro-antd/space";
+import {TokenInterceptor} from "./interceptors/token.interceptor";
+import {NzTagModule} from "ng-zorro-antd/tag";
 
 registerLocaleData(ru);
 const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill, LogoutOutline];
@@ -53,31 +55,33 @@ const icons: IconDefinition[] = [StepBackwardOutline, AlertOutline, AlertFill, L
     LoginComponent,
     ModalTarifComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NzButtonModule,
-    NzGridModule,
-    HttpClientModule,
-    NzSelectModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    NzIconModule.forRoot(icons),
-    NzAvatarModule,
-    NzModalModule,
-    NzFormModule,
-    NzInputModule,
-    ReactiveFormsModule,
-    NgxMaskDirective,
-    NgxMaskPipe,
-    NzDividerModule,
-    NgxPassCodeModule,
-    NzNotificationServiceModule,
-    NgOptimizedImage,
-    NzSpinModule,
-    NzSpaceModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NzButtonModule,
+        NzGridModule,
+        HttpClientModule,
+        NzSelectModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        NzIconModule.forRoot(icons),
+        NzAvatarModule,
+        NzModalModule,
+        NzFormModule,
+        NzInputModule,
+        ReactiveFormsModule,
+        NgxMaskDirective,
+        NgxMaskPipe,
+        NzDividerModule,
+        NgxPassCodeModule,
+        NzNotificationServiceModule,
+        NgOptimizedImage,
+        NzSpinModule,
+        NzSpaceModule,
+        NzTagModule
+    ],
   providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
     {provide: NZ_I18N, useValue: ru_RU},
     provideNgxMask()
   ],

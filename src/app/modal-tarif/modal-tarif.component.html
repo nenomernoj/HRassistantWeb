@@ -2,8 +2,8 @@
   <ng-container *nzModalContent>
     <div nz-row nzGutter="24" class="priceOptions">
       <div nz-col nzSpan="24">
-        <p>Выберите категории</p>
-        <nz-select nzMode="multiple" [(ngModel)]="selectedCats" (ngModelChange)="showLog($event)">
+        <p></p>
+        <nz-select [nzPlaceHolder]="'Выберите категории'" nzMode="multiple" [(ngModel)]="selectedCats" (ngModelChange)="showLog($event)">
           <nz-option *ngFor="let cat of categories" [nzLabel]="cat.Name" [nzValue]="cat.Name"></nz-option>
         </nz-select>
       </div>

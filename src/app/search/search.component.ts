@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {timeout} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -9,6 +10,7 @@ import {timeout} from "rxjs";
 })
 export class SearchComponent implements OnInit {
   constructor(
+    private router: Router,
     private apiService: ApiService
   ) {
   }
@@ -40,6 +42,11 @@ export class SearchComponent implements OnInit {
     }, err => {
       this.loading = false;
     })
+  }
+
+  showDetails(data: any): void {
+    localStorage.setItem('selectedResume', JSON.stringify(data));
+    this.router.navigate(['/search/detail']);
   }
 
   /*  renderCategory(id: number): string {

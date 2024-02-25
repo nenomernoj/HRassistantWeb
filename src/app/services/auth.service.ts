@@ -10,6 +10,8 @@ export class AuthService {
   accessTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
+  openAuthModalSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+
   constructor(private http: HttpClient) {
   }
 
@@ -21,11 +23,12 @@ export class AuthService {
     return this.http.post(`/org/registerOrganization`, data);
   }
 
-  getAccessToken():BehaviorSubject<string> {
+  getAccessToken(): BehaviorSubject<string> {
     return this.accessTokenSubject.value;
   }
 
   setAccessToken(token: string): void {
+    localStorage.setItem('accessToken', token);
     this.accessTokenSubject.next(token);
   }
 
@@ -39,13 +42,20 @@ export class AuthService {
     this.refreshTokenSubject.next(token);
   }
 
+  openAuthModalComponent(isOpen: boolean): void {
+    console.log(isOpen);
+    if (isOpen) {
+      this.openAuthModalSubject.next('open');
+    }
+  }
+
   refreshTokens(): Observable<{ accessToken: string, refreshToken: string }> {
     const refreshToken = this.getRefreshToken();
     if (!refreshToken) {
       throw new Error('No refresh token found!');
     }
 
-    return this.http.post<{ accessToken: string, refreshToken: string }>(`/api/Account/RefreshToken`, {refreshToken})
+    return this.http.post<{ accessToken: string, refreshToken: string }>(`/org/refresh`, {refreshToken})
       .pipe(
         tap(tokens => {
           this.setAccessToken(tokens.accessToken);
@@ -62,6 +72,9 @@ export class AuthService {
     return this.http.post(`/org/login`, data);
   }
 
+  updateOrg(data: any): Observable<any> {
+    return this.http.put(`/org/updateOrganization`, data);
+  }
 
   resetPassword(data: any): Observable<any> {
     return this.http.post(`/api/Account/ResetPassword`, data);

@@ -3,7 +3,7 @@
     <div class="titleBlock">
       <h1>Актуальная база кандидатов отобранные профессиональными
         HR ассистентами</h1>
-      <button class="moreBtn" nz-button nzType="default" (click)="isVisibleTarif = true">Получить доступ</button>
+      <button class="moreBtn" nz-button nzType="default" (click)="checkAuth()">Получить доступ</button>
     </div>
   </div>
 </div>
@@ -57,7 +57,7 @@
       <h3>Размещение вакансий</h3>
       <p>Более <b>2 500</b> кандидатов увидят<br/>вашу вакансию</p>
       <span class="price">4 990 ₸</span>
-      <button class="w100" nz-button nzType="primary">Разместить вакансию</button>
+      <button class="w100" nz-button nzType="primary" (click)="showVacation = true">Разместить вакансию</button>
     </div>
   </div>
   <div nz-col [nzLg]="{ span: 12, offset: 0 }" [nzXs]="{ span: 24, offset: 0 }">
@@ -65,7 +65,7 @@
       <h3>Доступ к базе профилей кандидатов</h3>
         <p>Получите доступ на <b>7 дней</b> <br/>для выбранных категорий</p>
       <span class="price">14 990 ₸ <b class="perCat">за категорию</b></span>
-      <button class="w100" nz-button nzType="primary" (click)="isVisibleTarif = true">Получить доступ</button>
+      <button class="w100" nz-button nzType="primary" (click)="checkAuth()">Получить доступ</button>
     </div>
   </div>
 </div>
@@ -79,7 +79,7 @@
       <b>от 190 990 ₸</b>
     </div>
     <div nz-col [nzLg]="{ span: 8, offset: 2 }" [nzXs]="{ span: 24, offset: 0 }">
-      <button nz-button nzType="default" (click)="isVisibleTarif = true">Оставить заявку</button>
+      <button nz-button nzType="default" (click)="checkAuth()">Оставить заявку</button>
     </div>
   </div>
 </div>
@@ -115,6 +115,103 @@
       <p>Бонусные тесты и анкеты для работодателей при первичном собеседовании</p>
     </div>
   </div>
-  <button style="width: 262px; margin: 48px auto" nz-button nzType="primary" (click)="isVisibleTarif = true">Получить доступ</button>
+  <button style="width: 262px; margin: 48px auto" nz-button nzType="primary" (click)="checkAuth()">Получить доступ</button>
 </div>
 <app-modal-tarif [isVisible]="isVisibleTarif" (closeModal)="isVisibleTarif = false"></app-modal-tarif>
+
+
+<nz-modal nzWidth="900px" nzOkText="Отправить на проверку" [(nzVisible)]="showVacation" nzTitle="Добавить вакансию" (nzOnCancel)="handleCancel()" (nzOnOk)="submitForm()">
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="validateForm" class="job-form">
+      <!-- Title -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Название вакансии">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="title" placeholder="Название"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Salary -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите зарплату!">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="salary" placeholder="Зарплата"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- WorkSchedule -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Опишите график!">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="workSchedule" placeholder="Расписание, рабочий график"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Responsibilities -->
+
+      <!-- Address -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите адрес!">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="address" placeholder="Адрес"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- ContactPhone -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите контактный телефон!">
+          <nz-input-group>
+            <input type="text" prefix="+" mask="0 (000) 000-00-00" nz-input formControlName="contactPhone" placeholder="Телефон"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- ContactWhatsApp -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Номер для связи ватсап!">
+          <nz-input-group>
+            <input type="text"  prefix="+" mask="0 (000) 000-00-00" nz-input formControlName="contactWhatsApp" placeholder="телефон вастап"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Author -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Название компании!">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="author" placeholder="Компания\фирма"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- CityId -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Укажите город!">
+          <input type="text" nz-input formControlName="city" placeholder="Город"/>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Опишите обязанности!">
+          <nz-input-group>
+            <textarea nz-input formControlName="responsibilities" placeholder="Обязаности"></textarea>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <!-- Requirements -->
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Опишите требования!">
+          <nz-input-group>
+            <textarea nz-input formControlName="requirements" placeholder="Требования"></textarea>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+  </ng-container>
+</nz-modal>

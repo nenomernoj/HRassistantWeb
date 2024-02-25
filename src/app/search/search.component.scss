@@ -42,7 +42,7 @@ b {
 .price {
   color: #1C1C1E;
   background-color: #E6E6ED;
-  width: auto;
+  width: 100%;
   display: inline-block;
   float: left;
   padding: 6px 14px;
@@ -50,6 +50,10 @@ b {
   border-radius: 10px;
   font-size: 16px;
   font-family: Inter-Bold, sans-serif;
+}
+
+.blur {
+  filter: blur(4px);
 }
 
 .exp {

@@ -53,7 +53,8 @@ export class ModalTarifComponent implements OnInit {
     const company: any = JSON.parse(companyJSON);
     const token = '7061050517:AAGYkWmC2gb0t5o6oJwI3RlqlBZRBvomlXs'; // Замените на токен вашего бота
     const text = `Заявка на доступ к кандидатам \n
-    Компания: ${company.FullName},\n
+    Компания: ${company.CompanyName},\n
+    Конт. Лицо: ${company.FullName},\n
     Телефон: +${company.PhoneNumber},\n
     Категории: ${this.selectedCats.join(', ')}\n
     На сумму: ${this.price * this.selectedCats.length}`;

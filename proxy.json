@@ -1,12 +1,12 @@
 {
   "/org": {
-    "target": "http://192.168.0.106:3000/",
+    "target": "http://192.168.0.109:3000/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
   },
   "/resumes": {
-    "target": "http://192.168.0.106:3000/",
+    "target": "http://192.168.0.109:3000/",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true

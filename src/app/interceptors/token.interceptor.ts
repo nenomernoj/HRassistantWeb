@@ -20,15 +20,16 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      request = this.addToken(request, accessToken);
-    }
+    const access_token = localStorage.getItem('accessToken');
+    const token = access_token ? `Bearer ` + access_token : '';
+    const modifiedReq = request.clone({
+      headers: request.headers.set('Authorization', token)
+    });
 
-    return next.handle(request).pipe(
+    return next.handle(modifiedReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          return this.handle401Error(request, next);
+          return this.handle401Error(modifiedReq, next);
         } else if (error.status === 400 && error.error) {
           this.handle400Error(error);
           return throwError(error);
