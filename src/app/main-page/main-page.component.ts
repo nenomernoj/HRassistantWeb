@@ -67,7 +67,7 @@ export class MainPageComponent implements OnInit {
 Рассписание: ${data.workSchedule}\n
 `;
 
-      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${122908745}&text=${encodeURIComponent(text)}`)
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${978152775}&text=${encodeURIComponent(text)}`)
         .then(response => response.json())
         .then(data => {
           this.msg.success('Мы получили вашу заявку');

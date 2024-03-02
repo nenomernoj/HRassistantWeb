@@ -16,16 +16,16 @@
   <div class="results" nz-row [nzGutter]="[24,24]">
     <div nz-col nzLg="6" nzXs="24" *ngFor="let item of list">
       <div class="greyBg br20px" (click)="showDetails(item)">
-        <nz-avatar [nzSize]="64" [nzText]="item.FullName[0]" [nzSrc]="item.Photo"
+        <nz-avatar [nzSize]="64" [nzText]="item.fullName[0]" [nzSrc]="item.photo"
                    style="    color: #fff;
     background-color: rgb(19 167 218);
      text-transform:uppercase; font-size: 18px"></nz-avatar>
-        <b>{{ item.FullName }}</b>
-        <p><img src="assets/images/location-01.svg"/> Астана</p>
-        <b class="prof">{{ item.Information }}</b>
-        <div [ngClass]="item.Phone ? 'price' : 'price blur'">+{{ item.Phone ? item.Phone : '00000000000' }}</div>
-        <div [ngClass]="item.Email ? 'price' : 'price blur'">{{ item.Email ? item.Email : '00000000000' }}</div>
-        <p class="exp"></p>
+        <b>{{ item.fullName }}</b>
+        <p><img src="assets/images/location-01.svg"/> {{item.cityId === 1 ? 'Астана' : 'Алмата'}}</p>
+        <b class="prof">{{ item.position }}</b>
+        <div [ngClass]="item.phone ? 'price' : 'price blur'">+{{ item.phone ? item.phone : '00000000000' }}</div>
+        <div [ngClass]="item.email ? 'price' : 'price blur'">{{ item.email ? item.email : '00000000000' }}</div>
+        <p class="exp">Опыт работы (в годах): {{item.workExperienceYears}}</p>
       </div>
     </div>
   </div>

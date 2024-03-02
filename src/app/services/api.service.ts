@@ -23,6 +23,6 @@ export class ApiService {
     if (cityId) {
       params = params.append('cityId', cityId);
     }
-    return this.http.get(`/org/getAllResumesByOrg`, {params});
+    return this.http.get(`/org/getAllCandidates`, {params});
   }
 }

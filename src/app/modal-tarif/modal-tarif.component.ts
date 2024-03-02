@@ -59,7 +59,7 @@ export class ModalTarifComponent implements OnInit {
     Категории: ${this.selectedCats.join(', ')}\n
     На сумму: ${this.price * this.selectedCats.length}`;
 
-    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${122908745}&text=${encodeURIComponent(text)}`)
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${978152775}&text=${encodeURIComponent(text)}`)
       .then(response => response.json())
       .then(data => {
         this.message.success('Мы получили вашу заявку', 'Ожидайте звонка, на номер указанный при регистрации', {nzDuration: 0});

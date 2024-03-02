@@ -1,11 +1,11 @@
 <div nz-row>
   <div nz-col nzLg="16" nzXs="24" class="wrapper">
     <div class="candidateHeader">
-      <nz-avatar [nzShape]="'square'" [nzSize]="96" [nzSrc]="data.Photo"></nz-avatar>
+      <nz-avatar [nzShape]="'square'" [nzText]="data.fullName[0]" [nzSize]="96" [nzSrc]="data.photo"></nz-avatar>
       <div class="desc">
-        <h2>{{ data.FullName }}</h2>
-        <p>{{ data.Gender === '1' ? 'Мужчина' : 'Женщина' }}, Возраст: {{ getAge(data.Birthdate) }},
-          родилась {{ data.Birthdate | date:'dd.MM.YYYY' }}</p>
+        <h2>{{ data.fullName }}</h2>
+        <p>Возраст: {{ getAge(data.birthDate) }},
+          Дата рождения: {{ data.birthDate | date:'dd.MM.YYYY' }}</p>
         <p><img src="assets/images/location-01.svg"/> {{ data.CityId === 1 ? 'Астана' : 'Алмата' }}</p>
       </div>
     </div>
@@ -23,28 +23,38 @@
     </div>
 
     <div class="resumeBlock">
-      <h2>{{ data.Information }}</h2>
+      <h2>{{ data.position }}</h2>
       <div class="aboutMe">
-        <h4>Категории</h4>
-        <nz-tag  [nzColor]="'blue'" *ngFor="let cat of data.categories"> {{ renderCats(cat) }}</nz-tag>
+        <h4>Комментарии рекрутера</h4>
+        <p>
+          {{data.comment}}
+        </p>
+
+      </div>
+      <div class="aboutMe">
+        <h4>Обо мне</h4>
+        <p>
+          {{ data.aboutMe }}
+        </p>
 
       </div>
 
       <div class="exp">
-        <h4>Опыт работы</h4>
+        <h4>Опыт работы: {{data.workExperienceYears}} год(а)/лет</h4>
         <div class="greyBg br20px p16" *ngFor="let exp of data.workExperience">
-          <b class="companyName blue">{{exp.EmployerName}}</b>
-          <p class="period">{{exp.Period}}</p>
-          <p>{{exp.Description}}</p>
+          <b class="companyName blue">{{exp.companyName}}</b>
+          <b class="companyName">{{exp.position}}</b>
+          <p class="period">{{exp.period}}</p>
+          <p>{{exp.description}}</p>
         </div>
       </div>
 
       <div class="edu">
         <h4>Образование</h4>
         <div class="greyBg br20px p16"  *ngFor="let edu of data.education">
-          <b class="companyName blue">{{edu.SchoolName}}</b>
-          <p class="spec"><strong>{{edu.Specialization}}</strong><br/>
-            {{edu.GraduationYear}}</p>
+          <b class="companyName blue">{{edu.schoolName}}</b>
+          <p class="spec"><strong>{{edu.description}}</strong><br/>
+            {{edu.period}}</p>
         </div>
       </div>
       <div class="skills">
@@ -53,16 +63,10 @@
          {{skill}}
         </div>
       </div>
-      <div class="skills">
-        <h4>Языки</h4>
-        <div  *ngFor="let lang of data.languages" class="skill greyBg br20px">
-          {{lang.LanguageName}} {{lang.ProficiencyLevel}}
-        </div>
-      </div>
-<!--      <div class="extra">
+ <div class="extra">
         <h4>Дополнительная информация</h4>
-        <p>Водительские права, Сертификаты и курсы</p>
-      </div>-->
+        <p>{{data.additionalInfo}}</p>
+      </div>
     </div>
   </div>
 </div>
