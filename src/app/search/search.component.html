@@ -2,7 +2,7 @@
   <div class="filterBlock">
     <h1>
       {{ list.length }} отобранных кандидатов
-      по {{ cityId === 0 ? ' городам Астана, Алматы' : cityId === 1 ? ' городу Астана' : 'городу Алмата' }}
+      по {{ cityId === 0 ? ' городам Астана, Алматы' : cityId === 1 ? ' городу Астана' : 'городу Алматы' }}
     </h1>
     <nz-select nzPlaceHolder="Город" [(ngModel)]="cityId" (ngModelChange)="getAllResumes()">
       <nz-option nzLabel="Астана" [nzValue]="1"></nz-option>

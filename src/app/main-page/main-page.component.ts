@@ -44,6 +44,32 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  checkAuthForKey(): void {
+    const companyJSON: any = localStorage.getItem('company');
+    const company: any = JSON.parse(companyJSON);
+    const token = '7061050517:AAGYkWmC2gb0t5o6oJwI3RlqlBZRBvomlXs'; // Замените на токен вашего бота
+    const text = `Подбор кандидатов под ключ \n
+    Компания: ${company.CompanyName},\n
+    Конт. Лицо: ${company.FullName},\n
+    Телефон: +${company.PhoneNumber},\n}`;
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${978152775}&text=${encodeURIComponent(text)}`)
+      .then(response => response.json())
+      .then(data => {
+        this.msg.success('Мы получили вашу заявку');
+        this.validateForm.reset();
+        this.handleCancel();
+      })
+      .catch(err => console.error(err));
+
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${657951499}&text=${encodeURIComponent(text)}`)
+      .then(response => response.json())
+      .then(data => {
+        this.validateForm.reset();
+        this.handleCancel();
+      })
+      .catch(err => console.error(err));
+  }
+
   handleCancel(): void {
     this.showVacation = false;
   }
