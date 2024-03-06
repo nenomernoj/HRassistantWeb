@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,9 @@ export class ApiService {
   }
 
   getCategories(): Observable<any> {
-    return this.http.get(`/resumes/category`);
+    return this.http.get(`/resumes/category`).pipe(
+      map((categories: any) => categories.filter((category: any) => category.active === 1))
+    );
   }
 
   getAllresumes(categoryId: any, cityId: any): Observable<any> {

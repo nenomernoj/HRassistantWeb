@@ -6,24 +6,24 @@
         <h2>{{ data.fullName }}</h2>
         <p>Возраст: {{ getAge(data.birthDate) }},
           Дата рождения: {{ data.birthDate | date:'dd.MM.YYYY' }}</p>
-        <p><img src="assets/images/location-01.svg"/> {{ data.CityId === 1 ? 'Астана' : 'Алмата' }}</p>
+        <p><img src="assets/images/location-01.svg"/> {{ data.cityId === 1 ? 'Астана' : 'Алматы' }}</p>
       </div>
     </div>
 
     <div class="contacts">
       <div class="contactItem"><img src="assets/images/phone.svg"/>
 
-        {{ data.Phone ? data.Phone : '+7 *** *** ** **' }}
-        <button *ngIf="!data.Phone" nzSize="small" nz-button nzType="link" (click)="isVisibleTarif = true">Показать</button>
+        {{ data.phone ? '+' + data.phone : '+7 *** *** ** **' }}
+        <button *ngIf="!data.phone" nzSize="small" nz-button nzType="link" (click)="isVisibleTarif = true">Показать</button>
       </div>
       <div class="contactItem"><img src="assets/images/mail.svg"/>
-        {{ data.Email ? data.Email : '************' }}
-        <button *ngIf="!data.Email" nzSize="small" nz-button nzType="link" (click)="isVisibleTarif = true">Показать</button>
+        {{ data.email ? data.email : '************' }}
+        <button *ngIf="!data.email" nzSize="small" nz-button nzType="link" (click)="isVisibleTarif = true">Показать</button>
       </div>
     </div>
 
     <div class="resumeBlock">
-      <h2>{{ data.position }}</h2>
+      <h2 class="position">{{ data.position }}</h2>
       <div class="aboutMe">
         <h4>Комментарии рекрутера</h4>
         <p>

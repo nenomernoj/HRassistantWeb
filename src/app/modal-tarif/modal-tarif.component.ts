@@ -13,7 +13,7 @@ export class ModalTarifComponent implements OnInit {
   @Output() closeModal = new EventEmitter<any>;
   categories: any = [];
   selectedCats: any = [];
-  price = 14990;
+  price = 29990;
 
   constructor(private apiService: ApiService,
               private message: NzNotificationService) {
@@ -68,5 +68,13 @@ export class ModalTarifComponent implements OnInit {
       })
       .catch(err => console.error(err));
 
+    fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${657951499}&text=${encodeURIComponent(text)}`)
+      .then(response => response.json())
+      .then(data => {
+        this.message.success('Мы получили вашу заявку', 'Ожидайте звонка, на номер указанный при регистрации', {nzDuration: 0});
+        this.handleOk();
+        this.selectedCats = [];
+      })
+      .catch(err => console.error(err));
   }
 }

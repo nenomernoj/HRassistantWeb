@@ -14,7 +14,6 @@ export class SearchComponent implements OnInit {
     private apiService: ApiService
   ) {
   }
-
   loading = false;
   list: any[] = [];
   categories: any[] = [];

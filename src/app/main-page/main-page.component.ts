@@ -75,6 +75,14 @@ export class MainPageComponent implements OnInit {
           this.handleCancel();
         })
         .catch(err => console.error(err));
+
+      fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${657951499}&text=${encodeURIComponent(text)}`)
+        .then(response => response.json())
+        .then(data => {
+          this.validateForm.reset();
+          this.handleCancel();
+        })
+        .catch(err => console.error(err));
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {

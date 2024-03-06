@@ -1,16 +1,18 @@
 <nz-spin [nzSpinning]="loading">
   <div class="filterBlock">
     <h1>
-      3 976 резюме по городу Астана
+      {{ list.length }} отобранных кандидатов
+      по {{ cityId === 0 ? ' городам Астана, Алматы' : cityId === 1 ? ' городу Астана' : 'городу Алмата' }}
     </h1>
     <nz-select nzPlaceHolder="Город" [(ngModel)]="cityId" (ngModelChange)="getAllResumes()">
       <nz-option nzLabel="Астана" [nzValue]="1"></nz-option>
-      <nz-option nzLabel="Алмата" [nzValue]="2"></nz-option>
-      <nz-option nzLabel="Все" [nzValue]="0"></nz-option>
+      <nz-option nzLabel="Алматы" [nzValue]="2"></nz-option>
+      <nz-option nzLabel="Выберите город" [nzValue]="0"></nz-option>
     </nz-select>
-    <nz-select nzPlaceHolder="Специализация" [(ngModel)]="categoryId" (ngModelChange)="getAllResumes()">
+    <nz-select style="min-width: 300px;" nzPlaceHolder="Специализация" [(ngModel)]="categoryId"
+               (ngModelChange)="getAllResumes()">
       <nz-option *ngFor="let cat of categories" [nzLabel]="cat.Name" [nzValue]="cat.Id"></nz-option>
-      <nz-option nzLabel="Все" [nzValue]="0"></nz-option>
+      <nz-option nzLabel="Выберите категорию" [nzValue]="0"></nz-option>
     </nz-select>
   </div>
   <div class="results" nz-row [nzGutter]="[24,24]">
@@ -21,11 +23,11 @@
     background-color: rgb(19 167 218);
      text-transform:uppercase; font-size: 18px"></nz-avatar>
         <b>{{ item.fullName }}</b>
-        <p><img src="assets/images/location-01.svg"/> {{item.cityId === 1 ? 'Астана' : 'Алмата'}}</p>
+        <p><img src="assets/images/location-01.svg"/> {{ item.cityId === 1 ? 'Астана' : 'Алматы' }}</p>
         <b class="prof">{{ item.position }}</b>
         <div [ngClass]="item.phone ? 'price' : 'price blur'">+{{ item.phone ? item.phone : '00000000000' }}</div>
         <div [ngClass]="item.email ? 'price' : 'price blur'">{{ item.email ? item.email : '00000000000' }}</div>
-        <p class="exp">Опыт работы (в годах): {{item.workExperienceYears}}</p>
+        <p class="exp">Опыт работы (в годах): {{ item.workExperienceYears }}</p>
       </div>
     </div>
   </div>
